@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Log</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log(
+                "Service Worker registered with scope:",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.error("Service Worker registration failed:", error);
+            });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="logging">
+      <div id="login-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <h2>Login</h2>
+          <input type="email" id="login-email" placeholder="Email" />
+          <input type="password" id="login-password" placeholder="Password" />
+          <button id="login-btn">Login</button>
+        </div>
+      </div>
+
+      <!-- Add a button to trigger the modal -->
+    </div>
+    <!-- Burn Calories Modal -->
+    <div id="burn-calories-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <!-- <h2>Calculate Calorie Deficit</h2> -->
+        <label for="resting-calories">Resting Calories:</label>
+        <input type="number" id="resting-calories" value="2328" />
+        <label for="active-calories">Active Calories:</label>
+        <input type="number" id="active-calories" value="0" />
+        <button id="calculate-deficit-btn">Calculate Deficit</button>
+      </div>
+    </div>
+    <button id="login-trigger">Login</button>
+
+    <!-- <section> -->
+    <!-- <div class="auth-section">
+        <h2>Sign Up</h2>
+        <input type="email" id="signup-email" placeholder="Email" />
+        <input type="password" id="signup-password" placeholder="Password" />
+        <button id="signup-btn">Sign Up</button>
+      </div> -->
+    <!-- <div class="auth-section">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email" />
+        <input type="password" id="login-password" placeholder="Password" />
+        <button id="login-btn">Login</button>
+      </div> -->
+    <!-- </section> -->
+    <div class="container">
+      <button id="burn-calories-btn"></button>
+      <button id="logout-btn"></button>
+      <h1>Food Tracker</h1>
+
+      <div class="input-section">
+        <label for="food-select">Food:</label>
+        <div class="custom-select-wrapper">
+          <div class="custom-select">
+            <div class="custom-select-trigger">Select Food</div>
+            <div class="custom-options">
+              <span
+                class="custom-option"
+                data-calories=".982"
+                data-protein=".223"
+                data-unit="grams"
+                data-value="Chicken Breast"
+                >Chicken Breast</span
+              >
+              <span
+                class="custom-option"
+                data-calories="18.75"
+                data-protein="1.625"
+                data-unit="ounces"
+                data-value="Milk"
+                >Fairlife Whole Milk</span
+              >
+              <span
+                class="custom-option"
+                data-calories="95"
+                data-protein="10"
+                data-unit="scoop"
+                data-value="Protein Powder"
+                >Orgain Meal Protein Powder</span
+              >
+              <span
+                class="custom-option"
+                data-calories="30"
+                data-protein="3"
+                data-unit="tbsp"
+                data-value="PB2"
+                >PB2</span
+              >
+              <span
+                class="custom-option"
+                data-calories=".89"
+                data-protein=".011"
+                data-unit="grams"
+                data-value="Banana"
+                >Banana</span
+              >
+              <span
+                class="custom-option"
+                data-calories="70"
+                data-protein="6"
+                data-unit="egg"
+                data-value="Eggs"
+                >Happy Eggs</span
+              >
+              <span
+                class="custom-option"
+                data-calories="100"
+                data-protein="11"
+                data-unit="bar"
+                data-value="Epic Chicken Bar"
+                >Epic - Chicken Sriracha</span
+              >
+              <span
+                class="custom-option"
+                data-calories="260"
+                data-protein="11"
+                data-unit="bar"
+                data-value="Clif Bar"
+                >Clif - Crunchy PB</span
+              >
+              <span
+                class="custom-option"
+                data-calories="240"
+                data-protein="10"
+                data-unit="bar"
+                data-value="DKB Blueberry Bar"
+                >DKB Blueberry Almond Butter</span
+              >
+              <span
+                class="custom-option"
+                data-calories="210"
+                data-protein="4"
+                data-unit="bar"
+                data-value="DKB Oat/Honey Bar"
+                >DKB Oat-Rageous Honey Almond</span
+              >
+              <span
+                class="custom-option"
+                data-calories="240"
+                data-protein="10"
+                data-unit="bar"
+                data-value="DKB PB/Chocolate"
+                >DKB PB Chocolate Bar</span
+              >
+              <span
+                class="custom-option"
+                data-calories="160"
+                data-protein="11"
+                data-unit="package"
+                data-value="P3 - T/CJ/A"
+                >P3 - Turkey/Colby Jack/Almonds</span
+              >
+              <span
+                class="custom-option"
+                data-calories="45"
+                data-protein="4"
+                data-unit="tortilla"
+                data-value="Mission Tortilla"
+                >Mission - Carb Balance Flour Fajita</span
+              >
+              <span
+                class="custom-option"
+                data-calories="1220"
+                data-protein="64"
+                data-unit="spud"
+                data-value="McAlister's Spud"
+                >McAlister's Chipotle Chicken & Bacon Spud</span
+              >
+              <span
+                class="custom-option"
+                data-calories="760"
+                data-protein="5"
+                data-unit="cookie"
+                data-value="Crumbl Sugar Cookie"
+                >Crumbl - Pink Sugar</span
+              >
+              <span
+                class="custom-option"
+                data-calories="1.406"
+                data-protein="0"
+                data-unit="grams"
+                data-value="White Queso"
+                >Tostito's White Queso</span
+              >
+              <span
+                class="custom-option"
+                data-calories="3.929"
+                data-protein=".214"
+                data-unit="grams"
+                data-value="Colby Jack Shredded"
+                >Colby Jack Shredded Cheese</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <label id="food-weight-label" for="food-weight">Amount:</label>
+        <input type="number" id="food-weight" placeholder="Enter amount" />
+        <button id="add-food">Add</button>
+      </div>
+
+      <div class="summary-section">
+        <h2>Today's Log</h2>
+        <table id="food-log">
+          <thead>
+            <tr>
+              <th>Food</th>
+              <th>Amount</th>
+              <th>Calories</th>
+              <th>Protein</th>
+            </tr>
+          </thead>
+          <tbody id="log-body"></tbody>
+        </table>
+        <div class="input-section">
+          <label for="log-date">View Previous Logs:</label>
+          <input type="date" id="log-date" />
+          <!-- <button id="view-log">View Log</button> -->
+        </div>
+
+        <div class="totals">
+          <p><b>Total Calories:</b> <span id="total-calories">0</span> kcal</p>
+          <p><b>Total Protein:</b> <span id="total-protein">0</span> g</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

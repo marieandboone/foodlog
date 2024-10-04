@@ -1,0 +1,344 @@
+/* Monospace font and minimal styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #fafafa;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 60px 20px 20px 20px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  /* background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+}
+
+h1,
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.summary-section .input-section {
+  margin: 30px 0;
+}
+
+label {
+  font-size: 1rem;
+  color: #333;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#add-food {
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+}
+
+.totals {
+  text-align: left;
+}
+
+p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Custom Dropdown Styling */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select {
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-select-trigger {
+  padding: 15px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  color: #333;
+  width: 100%;
+}
+
+.custom-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: white;
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  z-index: 2;
+}
+
+.custom-option {
+  padding: 15px;
+  cursor: pointer;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  display: block;
+  width: 100%;
+}
+
+.custom-option:hover {
+  background-color: #f4f4f4;
+}
+
+/* When the dropdown is open, show the options */
+.custom-select.open .custom-options {
+  display: flex; /* Shows when the class 'open' is added */
+}
+
+input[type="date"] {
+  padding: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+
+button#view-log {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  transition: background-color 0.3s ease;
+}
+
+button#view-log:hover {
+  background-color: #555;
+}
+
+.remove-food {
+  background-color: black;
+  border: none;
+  border-radius: 50%; /* Makes it a circle */
+  width: 15px; /* Set a fixed width for the button */
+  height: 15px; /* Set a fixed height for the button */
+  position: relative; /* Needed for positioning the pseudo-elements */
+  cursor: pointer;
+}
+
+.remove-food::before,
+.remove-food::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 2px; /* Thickness of the X */
+  background-color: white;
+}
+
+.remove-food::before {
+  transform: translate(-50%, -50%) rotate(45deg); /* Creates one diagonal line */
+}
+
+.remove-food::after {
+  transform: translate(-50%, -50%) rotate(-45deg); /* Creates the other diagonal line */
+}
+
+.remove-food:hover {
+  background-color: darkgray; /* Changes color when hovered */
+}
+
+/* Responsive design for mobile */
+@media only screen and (max-width: 600px) {
+  input,
+  button,
+  .custom-select-trigger {
+    padding: 15px;
+    font-size: 1rem;
+  }
+  .summary-section {
+    font-size: 1rem;
+  }
+  .remove-food {
+    padding: 10px;
+  }
+}
+.auth-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-content input {
+  margin-bottom: 10px;
+}
+
+.modal-content button {
+  margin-top: 10px;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+#login-trigger {
+  width: 100px;
+  display: block;
+}
+
+#logout-btn {
+  display: block;
+}
+
+#logout-btn {
+  width: 30px;
+  height: 30px;
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor for hover */
+  background-image: url("icons/logout_24dp_000_FILL0_wght400_GRAD0_opsz24.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#burn-calories-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor for hover */
+  background-image: url("icons/fire2.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#burn-calories-btn,
+#logout-btn {
+  position: absolute;
+  top: 0px; /* Distance from the top of the viewport */
+  z-index: 1000; /* Ensure the buttons stay above other content */
+}
+
+#burn-calories-btn {
+  left: 25px; /* Align it to the left of the viewport */
+}
+
+#logout-btn {
+  right: 25px; /* Align it to the right of the viewport */
+}
+
+#logout-btn:hover,
+#burn-calories-btn:hover {
+  fill: #555;
+  opacity: 0.75;
+  transform: scale(0.9);
+}
+
+#burn-calories-modal .modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
