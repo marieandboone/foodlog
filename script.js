@@ -384,6 +384,7 @@ document.getElementById("logout-btn").addEventListener("click", () => {
 // Wait for Firebase auth state resolution on page load
 window.addEventListener("load", () => {
   console.log("Page loaded, checking auth state...");
+  document.getElementById("login-trigger").style.display = "none";
 
   // Listen for auth state changes and load the log once authentication is confirmed
   onAuthStateChanged(auth, (user) => {
@@ -400,9 +401,9 @@ window.addEventListener("load", () => {
       console.log("No authenticated user. Showing login section...");
       document.querySelector(".container").style.display = "none";
       // document.querySelector(".auth-section").style.display = "block";
+      document.getElementById("login-trigger").style.display = "block";
     }
   });
-  document.getElementById("login-trigger").style.display = "none";
 });
 
 // Get the modal elements
