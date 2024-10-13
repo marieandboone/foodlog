@@ -28,49 +28,37 @@
     </script>
   </head>
   <body>
-    <div class="logging">
-      <div id="login-modal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn">&times;</span>
-          <h2>Login</h2>
-          <input type="email" id="login-email" placeholder="Email" />
-          <input type="password" id="login-password" placeholder="Password" />
-          <button id="login-btn">Login</button>
-        </div>
-      </div>
+    <div id="loading-spinner" class="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
 
-      <!-- Add a button to trigger the modal -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email" />
+        <input type="password" id="login-password" placeholder="Password" />
+        <button id="login-btn">Login</button>
+      </div>
     </div>
     <!-- Burn Calories Modal -->
     <div id="burn-calories-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <!-- <h2>Calculate Calorie Deficit</h2> -->
         <label for="resting-calories">Resting Calories:</label>
         <input type="number" id="resting-calories" value="2328" />
         <label for="active-calories">Active Calories:</label>
         <input type="number" id="active-calories" value="0" />
-        <button id="calculate-deficit-btn">Calculate Deficit</button>
+        <button id="calculate-deficit-btn">Update</button>
       </div>
     </div>
+    <!-- Login Trigger Button -->
     <button id="login-trigger">Login</button>
-
-    <!-- <section> -->
-    <!-- <div class="auth-section">
-        <h2>Sign Up</h2>
-        <input type="email" id="signup-email" placeholder="Email" />
-        <input type="password" id="signup-password" placeholder="Password" />
-        <button id="signup-btn">Sign Up</button>
-      </div> -->
-    <!-- <div class="auth-section">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email" />
-        <input type="password" id="login-password" placeholder="Password" />
-        <button id="login-btn">Login</button>
-      </div> -->
-    <!-- </section> -->
+    <!-- Food Tracker Container -->
     <div class="container">
       <button id="burn-calories-btn"></button>
+      <div class="total-deficit"></div>
       <button id="logout-btn"></button>
       <h1>Food Tracker</h1>
 
@@ -206,7 +194,7 @@
                 data-protein="0"
                 data-unit="grams"
                 data-value="White Queso"
-                >Tostito's White Queso</span
+                >White Queso</span
               >
               <span
                 class="custom-option"
@@ -216,15 +204,31 @@
                 data-value="Colby Jack Shredded"
                 >Colby Jack Shredded Cheese</span
               >
+              <span
+                class="custom-option"
+                data-calories=".235"
+                data-protein=".024"
+                data-unit="grams"
+                data-value="Spinach"
+                >Spinach</span
+              >
+              <span
+                class="custom-option"
+                data-calories="5.714"
+                data-protein="0"
+                data-unit="grams"
+                data-value="Chipotle Aioli"
+                >Chipotle Aioli</span
+              >
             </div>
           </div>
         </div>
-
+        <!-- Food Inputs -->
         <label id="food-weight-label" for="food-weight">Amount:</label>
         <input type="number" id="food-weight" placeholder="Enter amount" />
         <button id="add-food">Add</button>
       </div>
-
+      <!-- Summary Section -->
       <div class="summary-section">
         <h2>Today's Log</h2>
         <table id="food-log">
@@ -241,7 +245,6 @@
         <div class="input-section">
           <label for="log-date">View Previous Logs:</label>
           <input type="date" id="log-date" />
-          <!-- <button id="view-log">View Log</button> -->
         </div>
 
         <div class="totals">

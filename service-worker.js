@@ -2,12 +2,12 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("app-cache").then((cache) => {
       return cache.addAll([
-        "/",
-        "/index.html",
-        "/styles.css",
-        "/script.js",
-        "/icon512_rounded.png",
-        "/icon512_maskable.png",
+        "/foodlog/",
+        "/foodlog//index.html",
+        "/foodlog//styles.css",
+        "/foodlog//script.js",
+        "/foodlog//icon.png",
+        "/foodlog/manifest.json",
       ]);
     })
   );

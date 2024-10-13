@@ -84,13 +84,15 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  table-layout: auto;
 }
 
 th,
 td {
-  padding: 10px;
+  padding: 8px;
   border-bottom: 1px solid #ddd;
   text-align: left;
+  word-wrap: break-word;
 }
 
 th {
@@ -226,7 +228,45 @@ button#view-log:hover {
   .remove-food {
     padding: 10px;
   }
+
+  table {
+    width: 100%; /* Ensure the table fits within the screen */
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+  }
+
+  th,
+  td {
+    font-size: 0.9rem; /* Adjust font size for better fit */
+  }
+
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 35%; /* Adjust column widths for mobile */
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 25%;
+  }
+
+  th:nth-child(3),
+  td:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 20%;
+  }
+
+  .remove-food {
+    width: 12px;
+    height: 12px;
+  }
+
+  .remove-food::before,
+  .remove-food::after {
+    width: 40%; /* Make the X icon smaller */
+  }
 }
+
 .auth-section {
   display: flex;
   flex-direction: column;
@@ -341,4 +381,58 @@ button#view-log:hover {
   border-radius: 10px;
   text-align: center;
   width: 300px;
+}
+
+.total-deficit {
+  position: absolute;
+  top: 0px;
+  z-index: 1000;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Loading spinner */
+
+/* Spinner Styles */
+.spinner-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Slightly transparent background */
+  z-index: 9999; /* Make sure it stays on top */
+}
+
+.spinner {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #333; /* Dark grey */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Initially hide the spinner */
+#loading-spinner {
+  display: none;
 }
