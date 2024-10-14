@@ -138,6 +138,8 @@ p {
   display: none; /* Hidden by default */
   flex-direction: column;
   z-index: 2;
+  max-height: 295px;
+  overflow-y: auto;
 }
 
 .custom-option {
@@ -155,7 +157,7 @@ p {
 
 /* When the dropdown is open, show the options */
 .custom-select.open .custom-options {
-  display: flex; /* Shows when the class 'open' is added */
+  display: block; /* Shows when the class 'open' is added */
 }
 
 input[type="date"] {
