@@ -231,6 +231,10 @@
       <!-- Summary Section -->
       <div class="summary-section">
         <h2>Today's Log</h2>
+        <div class="input-section">
+          <!-- <label for="log-date">View Previous Logs:</label> -->
+          <input type="date" id="log-date" />
+        </div>
         <table id="food-log">
           <thead>
             <tr>
@@ -242,10 +246,6 @@
           </thead>
           <tbody id="log-body"></tbody>
         </table>
-        <div class="input-section">
-          <label for="log-date">View Previous Logs:</label>
-          <input type="date" id="log-date" />
-        </div>
 
         <div class="totals">
           <p><b>Total Calories:</b> <span id="total-calories">0</span> kcal</p>
