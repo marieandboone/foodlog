@@ -167,7 +167,7 @@ async function addFoodToLogAndSave(foodLogEntry) {
   try {
     // Save to Firebase
     await set(ref(db, `foodLogs/${userId}/${selectedDate}`), logData);
-
+    console.log("Food added to log successfully.");
     // If save is successful, update the UI
     addFoodToLogUI(foodLogEntry);
     updateTotals(); // Update totals display after adding food
@@ -213,6 +213,8 @@ function resetFoodSelection() {
   foodSelect.removeAttribute("data-value");
 
   document.getElementById("food-weight").value = "";
+  const unitDisplay = document.getElementById("food-weight-label");
+  unitDisplay.textContent = "Amount:";
 }
 
 // Remove food from log
@@ -263,6 +265,7 @@ function loadLogForToday() {
 
 // Load log for a selected date
 function loadLogForDate(date) {
+  console.log("loading log for: " + date);
   const logBody = document.getElementById("log-body");
   logBody.innerHTML = "";
   totalCalories = 0;
@@ -296,6 +299,10 @@ function loadLogForDate(date) {
     .catch(function (error) {
       console.error("Error loading log for date:", error);
       alert("Failed to load log. Pleae try again.");
+    })
+    .finally(() => {
+      // Hide the loading spinner after data is loaded (or if there's an error)
+      document.getElementById("loading-spinner").style.display = "none";
     });
 }
 
@@ -524,6 +531,9 @@ document.getElementById("log-date").addEventListener("change", function () {
   const selectedDate = this.value;
   const today = new Date().toISOString().slice(0, 10);
   const logTitle = document.querySelector(".summary-section h2");
+
+  // Show the loading spinner
+  document.getElementById("loading-spinner").style.display = "flex";
 
   if (selectedDate === today) {
     logTitle.textContent = "Today's Log";

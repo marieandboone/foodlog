@@ -140,6 +140,7 @@ p {
   z-index: 2;
   max-height: 295px;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .custom-option {
@@ -388,6 +389,7 @@ button#view-log:hover {
   left: 50%;
   transform: translateX(-50%);
   margin-top: 0;
+  z-index: 1000;
 }
 
 #burn-calories-modal .close-btn {
@@ -404,7 +406,7 @@ button#view-log:hover {
 .total-deficit {
   position: absolute;
   top: 0px;
-  z-index: 1000;
+  z-index: 500;
   left: 50%;
   transform: translate(-50%, 0);
   text-align: center;
