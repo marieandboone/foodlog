@@ -131,6 +131,7 @@ document.getElementById("add-food").addEventListener("click", async () => {
     await addFoodToLogAndSave(foodLogEntry);
     updateTotals();
     resetFoodSelection();
+    // Remove focus from the button
   } catch (error) {
     console.error("Error adding food to log:", error);
     alert("Failed to add food to log. Please try again.");
